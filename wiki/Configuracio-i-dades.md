@@ -12,7 +12,7 @@ Aquesta pàgina explica les **opcions del joc** i **què es desa** (i on) al teu
 | 🎶 **Música de fons** | ON / OFF (off per defecte) | Menú inicial |
 | 🎨 **Fons** | cielo, bosque, mar, desierto, espacio | Menú inicial |
 | 🗺️ **Llargada del tauler** | 20 (curta), 30 (mitjana), 40 (llarga) | Menú inicial |
-| 👥 **Nombre de jugadors** | 2 a 4 | Menú inicial |
+| 👥 **Nombre de jugadors** | 2 a 8 | Menú inicial |
 | 🐾 **Avatars** | 12 disponibles (🦊🐼🦁🐸🐵🐰🐷🎃🦄🐙🦖🐝) | Menú inicial |
 
 Els valors per defecte: `sfxOn: true`, `musicOn: false`, `fondo: 'cielo'`, `boardLength: 30`, `playerCount: 2`.

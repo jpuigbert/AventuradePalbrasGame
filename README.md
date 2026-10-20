@@ -5,7 +5,21 @@ Funciona a **Windows, macOS i Linux**, és **100% offline** i es pot instal·lar
 
 ---
 
-## 🚀 Instal·lació ràpida
+## ⬇️ Descarregar
+
+Instal·ladors llestos per a cada sistema a **[Releases](https://github.com/jpuigbert/AventuradePalbrasGame/releases/latest)**:
+
+| Sistema | Fitxer | Com instal·lar |
+|---------|--------|----------------|
+| 🍎 **macOS** | `AventuraPalabras-instalador.dmg` | Obre el DMG i arrossega l'app a **Aplicacions** |
+| 🪟 **Windows** | `AventuraPalabras-windows.zip` | Descomprimeix i doble clic a **`Instalar.bat`** |
+| 🐧 **Linux** | `AventuraPalabras-linux.run` | `chmod +x AventuraPalabras-linux.run && ./AventuraPalabras-linux.run` |
+
+> 🍎 Si macOS bloqueja l'app (no notaritzada): **botó dret → Obrir**, o `xattr -cr "/Applications/Aventura de Palabras.app"`.
+
+---
+
+## 🚀 Instal·lació ràpida (des del codi font)
 
 ### 1. Descarrega el joc
 Descarrega la carpeta `aventuradepalbras` sencera o clona-la:

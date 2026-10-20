@@ -4,6 +4,8 @@ Benvingut/a a la wiki d'**Aventura de Palabras**, un joc educatiu per aprendre *
 
 > 👉 Si vols pujar directament al tauler: [Com jugar](Com-jugar)
 
+📦 **Descarrega l'última versió**: [Releases](https://github.com/jpuigbert/AventuradePalbrasGame/releases/latest) — 🍎 `.dmg` · 🪟 `.zip` · 🐧 `.run`
+
 ---
 
 ## 📚 Contingut
@@ -27,12 +29,12 @@ Benvingut/a a la wiki d'**Aventura de Palabras**, un joc educatiu per aprendre *
 
 ## ✨ Què és Aventura de Palabras?
 
-És un **joc de tauler virtual** estilo "oca": fins a **4 jugadors** tiren un dau per torns i avancen per un camí de caselles. Segons la casella on cauen, han de **responder una pregunta de castellà** o pateixen un **efecte especial** (bonus, trampa, coet...). Guanya qui arriba primer a la 🏆 meta.
+És un **joc de tauler virtual** estilo "oca": fins a **8 jugadors** tiren un dau per torns i avancen per un camí de caselles. Segons la casella on cauen, han de **responder una pregunta de castellà** o pateixen un **efecte especial** (bonus, trampa, coet...). Guanya qui arriba primer a la 🏆 meta.
 
 ### Característiques principals
 
 - 🎯 **4 categories**: Comunicación 🔵, Sinónimos 🟢, Antónimos 🟡, Conversación 🔴
-- 👥 **2 a 4 jugadors** amb avatars personalitzables (12 animals!)
+- 👥 **2 a 8 jugadors** amb avatars personalitzables (12 animals!)
 - 🗺️ **3 llargades de partida**: curta (20), mitjana (30), llarga (40)
 - 🎨 **5 fons animats**: cielo, bosque, mar, desierto, espacio
 - 🏅 **15 medalles** desbloquejables
@@ -44,7 +46,7 @@ Benvingut/a a la wiki d'**Aventura de Palabras**, un joc educatiu per aprendre *
 
 ## 🚀 Començar en 30 segons
 
-1. Descarrega la carpeta del projecte (o clona el repo).
+1. Descarrega l'instal·lador de **[Releases](https://github.com/jpuigbert/AventuradePalbrasGame/releases/latest)** — o bé la carpeta del projecte / clona el repo.
 2. Obre `index.html` amb el navegador (doble clic), o bé:
    - 🍎 macOS / 🐧 Linux → doble clic a `iniciar.command`
    - 🪟 Windows → doble clic a `iniciar.bat`

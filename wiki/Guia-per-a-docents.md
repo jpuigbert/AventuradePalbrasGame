@@ -27,7 +27,7 @@ Aventura de Palabras està pensat per a **3r de Primària** i s'alinea amb el ll
 
 ## 🏫 Com jugar a classe
 
-- **2 a 4 jugadors** per tauler — ideal per a **equips** en una tauleta o pissarra digital.
+- **2 a 8 jugadors** per tauler — ideal per a **equips** en una tauleta o pissarra digital.
 - Fes servir el **mode Conversación** per a **producció oral**: l'alumnat parla en veu alta i s'autoavalua (fomenta l'expressió i la confiança).
 - **Llargada curta (20)** per a partides ràpides de **5-10 minuts**; **llarga (40)** per a una sessió completa.
 - Posa **música OFF** i **sons ON** en ambients sorollosos.

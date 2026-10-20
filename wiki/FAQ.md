@@ -11,7 +11,7 @@ Respostes ràpides als dubtes més habituals.
 Al **`localStorage`** del navegador, només al teu ordinador. **No s'envia res a cap servidor.** Mira [Configuració i dades](Configuracio-i-dades).
 
 ### 👥 Quants jugadors poden jugar?
-De **2 a 4** jugadors per tauler, amb torns rotatius.
+De **2 a 8** jugadors per tauler, amb torns rotatius.
 
 ### 🎲 Com guanyo una partida?
 Arribant **primer a la casella meta** 🏆. Les **estrelles ⭐** són la puntuació acumulada (encerts + bonus), però la victòria es decideix per qui completa el camí abans.

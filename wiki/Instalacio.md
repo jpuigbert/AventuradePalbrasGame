@@ -1,10 +1,24 @@
 # 💾 Instal·lació
 
-Aventura de Palabras **no cal instal·lar-lo** per jogar: funciona obrint un sol fitxer HTML. Tot i així, pots instal·lar-lo com a **app d'escriptori (PWA)** per tenir-ne una icona i obrir-lo com qualsevol programa.
+Aventura de Palabras **no cal instal·lar-lo** per jugar: funciona obrint un sol fitxer HTML. Tot i així, pots instal·lar-lo com a **app d'escriptori (PWA)** per tenir-ne una icona i obrir-lo com qualsevol programa.
 
 ---
 
-## 📥 1. Descarregar el joc
+## ⬇️ Descarregar l'instal·lador (recomanat)
+
+Des de **[GitHub Releases](https://github.com/jpuigbert/AventuradePalbrasGame/releases/latest)** tens els instal·ladors llestos per a cada sistema:
+
+| Sistema | Fitxer | Instal·lació |
+|---------|--------|--------------|
+| 🍎 **macOS** | `AventuraPalabras-instalador.dmg` | Obre el DMG i arrossega l'app a **Aplicacions** |
+| 🪟 **Windows** | `AventuraPalabras-windows.zip` | Descomprimeix i doble clic a **`Instalar.bat`** |
+| 🐧 **Linux** | `AventuraPalabras-linux.run` | `chmod +x AventuraPalabras-linux.run && ./AventuraPalabras-linux.run` |
+
+> 🍎 Si macOS bloqueja l'app (no està notaritzada): **botó dret → Obrir**, o `xattr -cr "/Applications/Aventura de Palabras.app"`.
+
+---
+
+## 📥 1. Descarregar el joc (alternativa: codi font)
 
 **Opció A — Git:**
 ```bash

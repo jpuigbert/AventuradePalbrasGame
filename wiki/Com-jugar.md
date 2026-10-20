@@ -17,7 +17,7 @@ Al menú principal (`startScreen`) tries com serà la partida:
 | Opció | Què tries | Detalls |
 |-------|-----------|---------|
 | 🎨 **Fons** | L'escenari del joc | ☁️ Cielo · 🌲 Bosque · 🌊 Mar · 🏜️ Desierto · 🚀 Espacio |
-| 👥 **Jugadors** | Quants jugadors hi ha | De **2 a 4**, amb els botons ➖ / ➕ |
+| 👥 **Jugadors** | Quants jugadors hi ha | De **2 a 8**, amb els botons ➖ / ➕ |
 | 🐾 **Avatars** | La cara de cada jugador | 12 avatar disponibles: 🦊 🐼 🦁 🐸 🐵 🐰 🐷 🎃 🦄 🐙 🦖 🐝 |
 | 🗺️ **Llargada** | Longitud del camí | Curta (**20**) · Mitjana (**30**) · Llarga (**40**) caselles |
 | 🔊 **Àudio** | So i música | Sons (efectes) i Música de fons, activables/desactivables |
