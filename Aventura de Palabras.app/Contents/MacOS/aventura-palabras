@@ -1,0 +1,47 @@
+#!/bin/bash
+APP_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+WWW="$APP_DIR/Resources/www"
+PROFILE="$HOME/.aventurapalabras-app"
+PORT=8765
+
+# busca un port lliure
+while lsof -iTCP -sTCP:LISTEN -P -n 2>/dev/null | grep -q ":$PORT "; do
+  PORT=$((PORT+1))
+done
+URL="http://localhost:$PORT/index.html"
+
+cleanup() { [ -n "$PID" ] && kill "$PID" 2>/dev/null; }
+trap cleanup EXIT INT TERM
+
+# servidor local (perquè funcione el mode PWA / service worker)
+if command -v python3 >/dev/null 2>&1; then
+  ( cd "$WWW" && python3 -m http.server "$PORT" >/dev/null 2>&1 ) &
+  PID=$!
+  sleep 1
+  SERVED=1
+else
+  # sense python3: obre directe (el joc funciona igual, sense PWA)
+  URL="file://$WWW/index.html"
+  SERVED=0
+fi
+
+# obri una finestra INDEPENDENT (sense barra del navegador)
+opened=0
+if [ "$SERVED" = "1" ]; then
+  if [ -d "/Applications/Google Chrome.app" ]; then
+    open -W -na "Google Chrome" --args --app="$URL" --user-data-dir="$PROFILE" --no-first-run
+    opened=1
+  elif [ -d "/Applications/Microsoft Edge.app" ]; then
+    open -W -na "Microsoft Edge" --args --app="$URL" --user-data-dir="$PROFILE" --no-first-run
+    opened=1
+  elif [ -d "/Applications/Chromium.app" ]; then
+    open -W -na "Chromium" --args --app="$URL" --user-data-dir="$PROFILE" --no-first-run
+    opened=1
+  fi
+fi
+
+if [ "$opened" = "0" ]; then
+  open "$URL"
+fi
+
+cleanup

@@ -1,0 +1,43 @@
+/* ============================================================
+   MEDALLAS.CSS — Estils del panell de medalles
+   ============================================================ */
+
+.medals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.medal-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 8px;
+  border-radius: 16px;
+  text-align: center;
+  border: 3px solid #ddd;
+  background: #fafafa;
+  transition: transform .15s ease;
+}
+.medal-card .medal-icon { font-size: 2.4rem; filter: grayscale(1) opacity(.4); }
+.medal-card .medal-name { font-weight: bold; font-size: .95rem; color: #777; }
+.medal-card .medal-desc { font-size: .75rem; color: #999; }
+
+.medal-card.earned {
+  border-color: var(--naranja);
+  background: linear-gradient(160deg, #fff7e0, #ffe9b3);
+  box-shadow: 0 4px 12px rgba(255,165,0,.25);
+}
+.medal-card.earned .medal-icon { filter: none; }
+.medal-card.earned .medal-name { color: #b26a00; }
+.medal-card.earned .medal-desc { color: #8a6d3b; }
+
+.medal-card.just-earned { animation: medal-pop .8s ease; }
+
+@keyframes medal-pop {
+  0%   { transform: scale(.3) rotate(-15deg); opacity: 0; }
+  50%  { transform: scale(1.25) rotate(8deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); }
+}

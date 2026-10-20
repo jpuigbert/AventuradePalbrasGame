@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aventura de Palabras 🌈</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF6B9D">
+  <link rel="icon" href="icons/favicon.ico">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Aventura">
+
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/animaciones.css">
+  <link rel="stylesheet" href="css/medallas.css">
+</head>
+<body>
+
+  <!-- ============ PANTALLA PRINCIPAL ============ -->
+  <section id="startScreen" class="screen active">
+    <div class="hero-strip">
+      <span class="hero-item hi-a">📚</span>
+      <span class="hero-item hi-b">🎲</span>
+      <span class="hero-item hi-c">🌈</span>
+      <span class="hero-item hi-d">🦊</span>
+      <span class="hero-item hi-e">⭐</span>
+      <span class="hero-item hi-d">🚀</span>
+      <span class="hero-item hi-b">💬</span>
+    </div>
+
+    <div class="title-wrap">
+      <h1 class="game-title">🌈 Aventura de Palabras ✨</h1>
+      <p class="game-subtitle">Aprèn castellà jugant · 3r de Primària</p>
+      <p class="game-tagline">Un joc de taula per a 2-8 esploradors: tira el dau, respon preguntes i arriba primer a la 🏆 META</p>
+    </div>
+
+    <!-- Què s'aprèn: 4 targetes de les categories -->
+    <div class="learn-cards">
+      <div class="learn-card lc-azul">
+        <span class="lc-icon">📘</span>
+        <h4>Comunicación</h4>
+        <p>Situaciones reales: saludar, pedir, agradecer, despedirse…</p>
+      </div>
+      <div class="learn-card lc-verd">
+        <span class="lc-icon">📗</span>
+        <h4>Sinónimos</h4>
+        <p>Palabras que significan LO MISMO: «veloz» = «rápido»</p>
+      </div>
+      <div class="learn-card lc-groc">
+        <span class="lc-icon">📙</span>
+        <h4>Antónimos</h4>
+        <p>Palabras que significan LO CONTRARIO: «frío» ⇄ «calor»</p>
+      </div>
+      <div class="learn-card lc-rojo">
+        <span class="lc-icon">💬</span>
+        <h4>Conversación</h4>
+        <p>Habla EN VOZ ALTA sobre un tema y autoevalúate</p>
+      </div>
+    </div>
+
+    <div class="setup-panel">
+      <!-- Fons -->
+      <div class="setup-block">
+        <h3>🎨 Tria el fons</h3>
+        <div id="fondoSelector" class="selector-row"></div>
+      </div>
+
+      <!-- Number de jugadors -->
+      <div class="setup-block">
+        <h3>👥 Jugadors</h3>
+        <div class="player-count-row">
+          <button class="small-btn" id="minusPlayers">➖</button>
+          <span id="playerCountLabel" class="player-count">2</span>
+          <button class="small-btn" id="plusPlayers">➕</button>
+        </div>
+        <div id="avatarSelector" class="avatar-grid"></div>
+        <div id="avatarPicker" class="avatar-picker"></div>
+      </div>
+
+      <!-- Llargada del tauler -->
+      <div class="setup-block">
+        <h3>🗺️ Llargada de la partida</h3>
+        <div class="length-row">
+          <button class="small-btn length-btn" data-length="20">Curta (20)</button>
+          <button class="small-btn length-btn selected" data-length="30">Mitjana (30)</button>
+          <button class="small-btn length-btn" data-length="40">Llarga (40)</button>
+        </div>
+      </div>
+
+      <!-- Àudio -->
+      <div class="setup-block">
+        <h3>🔊 Àudio</h3>
+        <div class="audio-row">
+          <button class="small-btn toggle-btn" id="toggleSfx">🎵 Sons: ON</button>
+          <button class="small-btn toggle-btn" id="toggleMusic">🎶 Música: OFF</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-row">
+      <button class="big-btn" id="startGameBtn">🎮 Començar a jugar</button>
+    </div>
+    <div class="menu-row">
+      <button class="small-btn" id="openEditorBtn">✏️ Editor</button>
+      <button class="small-btn" id="openStatsBtn">📊 Progrés</button>
+      <button class="small-btn" id="openMedalsBtn">🏅 Medalles</button>
+      <button class="small-btn" id="helpBtn">❓ Ajuda</button>
+      <button class="small-btn" id="openAboutBtn">ℹ️ Quant a…</button>
+    </div>
+
+    <!-- Com es juga: 3 passos -->
+    <div class="howto-row">
+      <div class="howto-step"><span>1️⃣</span><p><b>Tira el dau</b> i camina per les caselles de colors</p></div>
+      <div class="howto-step"><span>2️⃣</span><p><b>Respon</b> la pregunta de la casella: si aciertas = ⭐ estrella</p></div>
+      <div class="howto-step"><span>3️⃣</span><p><b>Arriba a la 🏆 meta</b> i guanya medalles!</p></div>
+    </div>
+
+    <div class="start-footer">
+      <span id="footerBankInfo">🧠 Més de 1.200 preguntes en castellà · 100% offline · funciona sense internet</span>
+    </div>
+  </section>
+
+  <!-- ============ PANTALLA DE JOC ============ -->
+  <section id="gameScreen" class="screen">
+    <div class="game-layout">
+      <div class="board-wrap">
+        <div id="board" class="board"></div>
+        <div id="legend" class="legend"></div>
+        <div id="cellIntro" class="cell-intro hidden"><span id="cellIntroText"></span></div>
+      </div>
+      <aside class="side-panel">
+        <h2 id="turnLabel" class="turn-label">Torn de…</h2>
+        <div class="dice-scene">
+          <div id="diceCube" class="dice-cube">
+            <div class="face f1" data-face="1"><i></i></div>
+            <div class="face f2" data-face="2"><i></i><i></i></div>
+            <div class="face f3" data-face="3"><i></i><i></i><i></i></div>
+            <div class="face f4" data-face="4"><i></i><i></i><i></i><i></i></div>
+            <div class="face f5" data-face="5"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="face f6" data-face="6"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+        <button class="big-btn" id="rollDiceBtn">Tirar el dau</button>
+        <div id="playersPanel" class="players-panel"></div>
+        <div class="side-buttons">
+          <button class="small-btn" id="pauseMusicBtn">🎶</button>
+          <button class="small-btn danger" id="exitGameBtn">🚪 Sortir</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ MODAL: PREGUNTA ============ -->
+  <div id="questionModal" class="modal-overlay hidden">
+    <div class="modal-card question-card">
+      <div class="question-cat-badge" id="questionCatBadge">🔵 Comunicación</div>
+      <p class="question-def" id="questionDef"></p>
+      <h2 id="questionText" class="question-text"></h2>
+      <div id="questionOptions" class="question-options"></div>
+      <div id="questionFeedback" class="question-feedback hidden"></div>
+      <button class="small-btn hidden" id="questionNextBtn">➡️ Continuar</button>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: RESULTAT ============ -->
+  <div id="resultModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h2 id="resultTitle" class="result-title">🏆 Fi de la partida!</h2>
+      <div id="resultBody" class="result-body"></div>
+      <div class="modal-buttons">
+        <button class="big-btn" id="playAgainBtn">🔄 Jugar una altra vegada</button>
+        <button class="small-btn" id="resultMenuBtn">🏠 Menú principal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: MEDALLAS ============ -->
+  <div id="medalsModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h2>🏅 Medalles</h2>
+      <div id="medalsGrid" class="medals-grid"></div>
+      <div class="modal-buttons">
+        <button class="small-btn medals-close-btn">❌ Tancar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: PROGRÉS ============ -->
+  <div id="statsModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h2>📊 Registre de progrés</h2>
+      <div id="statsBody" class="stats-body"></div>
+      <div class="modal-buttons">
+        <button class="small-btn danger" id="resetStatsBtn">🗑️ Reiniciar dades</button>
+        <button class="small-btn stats-close-btn">❌ Tancar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: QUANT A ============ -->
+  <div id="aboutModal" class="modal-overlay hidden">
+    <div class="modal modal-small">
+      <h2>ℹ️ Quant a…</h2>
+      <div class="about-card">
+        <p class="about-game">🎲 <b>Aventura de Palabras</b></p>
+        <p class="about-desc">Joc de taula educatiu per aprendre castellà: sinònims, antònims, comunicació i conversació · 100% offline</p>
+        <div class="about-creator">
+          <p class="about-label">Creat per</p>
+          <p class="about-name">Joan Puigbert Carreras</p>
+        </div>
+        <p class="about-version">Versió 1.0 · 2026</p>
+      </div>
+      <button class="small-btn" data-close-modal="aboutModal">❌ Tancar</button>
+    </div>
+  </div>
+
+  <!-- ============ SELECTOR DE MÚSICA ============ -->
+  <div id="musicModal" class="modal-overlay hidden">
+    <div class="modal modal-small">
+      <h2>🎵 Tria la teua música</h2>
+      <p class="question-def">Pulsa una melodia i sonarà de seguida · pots canviar-la quan vulgues</p>
+      <div class="music-opts">
+        <button class="music-opt" data-mel="0">🎶 Aventura<span>alegre i movideta</span></button>
+        <button class="music-opt" data-mel="1">🌙 Calma<span>suau i tranquil·la</span></button>
+        <button class="music-opt" data-mel="2">🚀 Marxa<span>militar i marcada</span></button>
+        <button class="music-opt music-off" data-mel="-1">🔇 Sense música<span>silenci total</span></button>
+      </div>
+      <button class="small-btn" data-close-modal="musicModal">❌ Tancar</button>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: EDITOR ============ -->
+  <div id="editorModal" class="modal-overlay hidden">
+    <div class="modal-card editor-card">
+      <h2>✏️ Editor de preguntes</h2>
+
+      <div class="editor-form">
+        <label>Categoria
+          <select id="editorCategory">
+            <option value="comunicacion">🔵 Comunicación</option>
+            <option value="sinonimos">🟢 Sinónimos</option>
+            <option value="antonimos">🟡 Antónimos</option>
+            <option value="conversacion">🔴 Conversación</option>
+          </select>
+        </label>
+        <label>Pregunta
+          <input type="text" id="editorQuestion" placeholder="Escriu la pregunta…" maxlength="200">
+        </label>
+        <div class="editor-options-grid">
+          <label class="editor-opt-label">
+            <input type="radio" name="editorCorrect" value="0" checked>
+            <input type="text" id="editorOpt0" placeholder="Opció 1">
+          </label>
+          <label class="editor-opt-label">
+            <input type="radio" name="editorCorrect" value="1">
+            <input type="text" id="editorOpt1" placeholder="Opció 2">
+          </label>
+          <label class="editor-opt-label">
+            <input type="radio" name="editorCorrect" value="2">
+            <input type="text" id="editorOpt2" placeholder="Opció 3">
+          </label>
+        </div>
+        <p class="editor-hint">⭕ Marca amb el cercle l'opció correcta.</p>
+        <div class="online-url-row">
+          <input type="url" id="onlineUrlInput" class="online-url-input"
+                 placeholder="🌐 URL API (buit = per defecte: opentdb.com/api_sp.php) · http:// o https://">
+          <button class="small-btn" id="onlineUrlResetBtn" title="Tornar a l'URL per defecte">↺ Per defecte</button>
+        </div>
+        <div class="modal-buttons">
+          <button class="small-btn success" id="editorSaveBtn">💾 Guardar</button>
+          <button class="small-btn" id="editorOnlineBtn">🌐 Buscar online</button>
+          <button class="small-btn" id="editorExportBtn">⬇ Exportar</button>
+          <button class="small-btn" id="editorImportBtn">⬆ Importar</button>
+          <input type="file" id="editorImportFile" accept=".json,application/json" class="hidden">
+        </div>
+      </div>
+
+      <h3>Preguntes pròpies <span id="editorCount" class="badge">0</span></h3>
+      <div id="editorList" class="editor-list"></div>
+
+      <div class="modal-buttons">
+        <button class="small-btn editor-close-btn">❌ Tancar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: AJUDA ============ -->
+  <div id="helpModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h2>❓ Com jugar</h2>
+      <div class="help-body">
+        <ol>
+          <li>Tria fons, avatars, jugadors i llargada.</li>
+          <li>Tira el dau per torns.</li>
+          <li>Segons la casella, respon una pregunta o rep un efecte especial.</li>
+          <li>Cada encert dona <b>+10 ⭐</b>. Guanya qui arribi primer a la meta 🏆.</li>
+        </ol>
+
+        <h3>📚 Què significa cada cosa?</h3>
+        <div class="help-defs">
+          <div class="def-card" style="border-color:#6BCB77">
+            <div class="def-title">🟢 Sinónimos — paraules iguals</div>
+            <p class="def-cat">Sinònim = una altra paraula que vol dir <b>el mateix</b>.</p>
+            <p class="def-ex">«veloz» i «rápido» volen dir el mateix → són sinònims.<br>
+            Altres: «contento = feliz», «empezar = comenzar», «bonito = hermoso».</p>
+          </div>
+          <div class="def-card" style="border-color:#FFD93D">
+            <div class="def-title">🟡 Antónimos — paraules contràries</div>
+            <p class="def-cat">Antònim = una paraula que vol dir <b>el contrari</b>.</p>
+            <p class="def-ex">«frío» és el contrari de «calor» → són antònims.<br>
+            Altres: «grande ⇄ pequeño», «día ⇄ noche», «fácil ⇄ difícil».</p>
+          </div>
+          <div class="def-card" style="border-color:#4A90D9">
+            <div class="def-title">🔵 Comunicación — parlar bé</div>
+            <p class="def-cat">Com s'utilitzen les paraules <b>en situacions reals</b>: saludar, demanar, agrair, acomiadar-se, escriure una carta…</p>
+            <p class="def-ex">«Para saludar por la mañana decimos… Buenos días».<br>
+            «Para pedir algo con educación usamos… Por favor».</p>
+          </div>
+          <div class="def-card" style="border-color:#FF6B6B">
+            <div class="def-title">🔴 Conversación — parlar en veu alta</div>
+            <p class="def-cat">Respon <b>de paraula</b> a una pregunta. No hi ha opcions: parles tu i els companys escolten.</p>
+            <p class="def-ex">«¿Cuál es tu comida favorita? Explica por qué.»<br>
+            Quan acabes, t'autoavalues: si t'has explicat bé, guanyes +10 ⭐.</p>
+          </div>
+        </div>
+
+        <h3>Tipus de casella</h3>
+        <ul class="help-cells">
+          <li><span class="cell-dot" style="background:#4A90D9"></span>🔵 Comunicación — pregunta de situacions (castellà)</li>
+          <li><span class="cell-dot" style="background:#6BCB77"></span>🟢 Sinónimos — tria la paraula que vol dir EL MATEIX</li>
+          <li><span class="cell-dot" style="background:#FFD93D"></span>🟡 Antónimos — tria la paraula que vol dir EL CONTRARI</li>
+          <li><span class="cell-dot" style="background:#FF6B6B"></span>🔴 Conversación — parla en veu alta i autoavalua't</li>
+          <li><span class="cell-dot" style="background:#e9e9e9"></span>⬜ Normal — no passa res, segueix al següent torn</li>
+          <li><span class="cell-dot" style="background:#FFA500"></span>⭐ Bonus — regala +15 ⭐</li>
+          <li><span class="cell-dot" style="background:#555"></span>💀 Trampa — et treu 10 ⭐</li>
+          <li><span class="cell-dot" style="background:#9B59B6"></span>🚀 Coet — avances 3 caselles</li>
+          <li><span class="cell-dot" style="background:#1ABC9C"></span>🔄 Intercanvi — intercanvies la teva casella amb un altre jugador</li>
+          <li><span class="cell-dot" style="background:#E67E22"></span>🎲 Torn extra — tornes a tirar el dau</li>
+          <li><span class="cell-dot" style="background:#7ed957"></span>🏁 Meta — qui hi arriba primer, guanya</li>
+        </ul>
+
+        <p class="help-tip">💡 Pista: a dalt de cada pregunta tens la <b>etiqueta del color</b> de la categoria per saber què t'estan preguntant.</p>
+      </div>
+      <div class="modal-buttons">
+        <button class="small-btn help-close-btn">❌ Tancar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: TARGETA CONVERSACIÓ ============ -->
+  <div id="conversationModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="question-cat-badge conv-badge">🔴 Conversación</div>
+      <p class="question-def" id="conversationDef"></p>
+
+      <!-- Fase 1: tria de tema -->
+      <div id="convPhaseChoose">
+        <h2 class="question-text">🃏 Elige uno de los dos temas</h2>
+        <button class="conv-topic" id="convTopic1"></button>
+        <button class="conv-topic" id="convTopic2"></button>
+      </div>
+
+      <!-- Fase 2: hablar con temporizador -->
+      <div id="convPhaseTalk" class="hidden">
+        <p class="conv-topic-label">Habla EN VOZ ALTA durante 60 segundos:</p>
+        <h2 id="conversationPrompt" class="question-text"></h2>
+        <div class="conv-timer-ring" id="convTimerRing"><span id="convTime">60</span></div>
+        <p class="conv-hint" id="convChallenge"></p>
+        <div class="modal-buttons">
+          <button class="small-btn success" id="convFinish">✅ ¡He acabado!</button>
+        </div>
+      </div>
+
+      <!-- Fase 3: autoevaluación por criterios -->
+      <div id="convPhaseRate" class="hidden">
+        <h2 class="question-text">Autoevalúa't · marca lo que has conseguido</h2>
+        <label class="conv-check"><input type="checkbox" id="convR1"> 🗣️ He hablado <b>siempre en español</b> <small>(+4 ⭐)</small></label>
+        <label class="conv-check"><input type="checkbox" id="convR2"> 💡 He dado <b>dos o más ideas o razones</b> <small>(+4 ⭐)</small></label>
+        <label class="conv-check"><input type="checkbox" id="convR3"> 👂 Mis compañeros <b>me han entendido</b> <small>(+4 ⭐)</small></label>
+        <div class="modal-buttons">
+          <button class="big-btn" id="convConfirm">⭐ Sumar estrelas</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/musica.js"></script>
+  <script src="js/fondos.js"></script>
+  <script src="js/jugadores.js"></script>
+  <script src="js/tablero.js"></script>
+  <script src="js/banco_preguntas.js"></script>
+  <script src="js/generador_offline.js"></script>
+  <script src="js/preguntas.js"></script>
+  <script src="js/progreso.js"></script>
+  <script src="js/medallas.js"></script>
+  <script src="js/online.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/pwa.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
