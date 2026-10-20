@@ -4,7 +4,7 @@
    i cache com a còpia de seguretat offline.
    ============================================================ */
 
-const CACHE_NAME = 'aventura-palabras-v3';
+const CACHE_NAME = 'aventura-palabras-v4';
 
 const ASSETS = [
   './',
